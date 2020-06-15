@@ -13,8 +13,9 @@ require (
 	github.com/go-openapi/validate v0.19.3
 	github.com/go-sql-driver/mysql v1.5.0
 	github.com/go-swagger/go-swagger v0.21.1-0.20200107003254-1c98855b472d
-	github.com/gobuffalo/packr v1.24.1
-	github.com/gobwas/glob v0.2.3 // indirect
+	github.com/gobuffalo/packr v1.30.1
+	github.com/gobuffalo/packr/v2 v2.8.0 // indirect
+	github.com/gobwas/glob v0.2.3
 	github.com/golang/protobuf v1.4.2 // indirect
 	github.com/gorilla/sessions v1.1.3
 	github.com/gorilla/websocket v1.4.2
@@ -22,6 +23,7 @@ require (
 	github.com/jmoiron/sqlx v1.2.0
 	github.com/julienschmidt/httprouter v1.2.0
 	github.com/kardianos/osext v0.0.0-20170510131534-ae77be60afb1 // indirect
+	github.com/karrick/godirwalk v1.15.6 // indirect
 	github.com/open-policy-agent/opa v0.10.1
 	github.com/ory/analytics-go/v4 v4.0.1
 	github.com/ory/go-acc v0.2.3
@@ -34,6 +36,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/pkg/profile v1.3.0 // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20181016184325-3113b8401b8a // indirect
+	github.com/rogpeppe/go-internal v1.6.0 // indirect
 	github.com/rs/cors v1.6.0
 	github.com/rubenv/sql-migrate v0.0.0-20190327083759-54bad0a9b051
 	github.com/shopspring/decimal v1.2.0 // indirect
@@ -45,7 +48,9 @@ require (
 	github.com/urfave/negroni v1.0.0
 	github.com/yashtewari/glob-intersection v0.0.0-20180916065949-5c77d914dd0b // indirect
 	go.mongodb.org/mongo-driver v1.3.4 // indirect
+	golang.org/x/crypto v0.0.0-20200604202706-70a84ac30bf9 // indirect
 	golang.org/x/lint v0.0.0-20200302205851-738671d3881b // indirect
+	golang.org/x/sys v0.0.0-20200610111108-226ff32320da // indirect
 	golang.org/x/tools v0.0.0-20200401192744-099440627f01
 	google.golang.org/grpc v1.29.1 // indirect
 	google.golang.org/protobuf v1.24.0 // indirect

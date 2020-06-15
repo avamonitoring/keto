@@ -71,6 +71,7 @@ func (h *Handler) Delete(factory func(context.Context, *http.Request, httprouter
 
 type ListRequest struct {
 	Collection string
+	Flavor     string
 	Value      interface{}
 	FilterFunc func(*ListRequest, map[string][]string)
 }
@@ -87,7 +88,7 @@ func ListByQuery(l *ListRequest, m map[string][]string) {
 	case *Roles:
 		var res Roles
 		for _, role := range *val {
-			filteredRole := role.withMembers(m["member"]).withIDs(m["id"])
+			filteredRole := role.withMembers(m["member"], l.Flavor).withIDs(m["id"], l.Flavor)
 			if filteredRole != nil {
 				res = append(res, *filteredRole)
 			}
@@ -96,7 +97,7 @@ func ListByQuery(l *ListRequest, m map[string][]string) {
 	case *Policies:
 		var res Policies
 		for _, policy := range *val {
-			filteredPolicy := policy.withSubjects(m["subject"]).withResources(m["resource"]).withActions(m["action"]).withIDs(m["id"])
+			filteredPolicy := policy.withSubjects(m["subject"], l.Flavor).withResources(m["resource"], l.Flavor).withActions(m["action"], l.Flavor).withIDs(m["id"], l.Flavor)
 			if filteredPolicy != nil {
 				res = append(res, *filteredPolicy)
 			}

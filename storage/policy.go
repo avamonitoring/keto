@@ -31,30 +31,98 @@ type Policy struct {
 	Conditions map[string]interface{} `json:"conditions"`
 }
 
-func (p *Policy) withSubjects(subjects []string) *Policy {
-	if p == nil || len(subjects) == 0 || contains(subjects[0], p.Subjects) {
-		return p
+func (p *Policy) withSubjects(subjects []string, flavor string) *Policy {
+  if p == nil || len(subjects) == 0 {
+    return p
+  }
+  
+	switch flavor {
+		case "glob":
+			if globMatch(subjects[0], p.Subjects) {
+				return p
+			}
+		case "exact":
+			if exactMatch(subjects[0], p.Subjects) {
+				return p
+			}
+		case "regex":
+			if regexMatch(subjects[0], p.Subjects) {
+				return p
+			}
+		default:
+			return nil
 	}
-	return nil
+  return nil
 }
 
-func (p *Policy) withResources(resources []string) *Policy {
-	if p == nil || len(resources) == 0 || contains(resources[0], p.Resources) {
-		return p
+func (p *Policy) withResources(resources []string, flavor string) *Policy {
+  if p == nil || len(resources) == 0 {
+    return p
+  }
+  
+	switch flavor {
+		case "glob":
+			if globMatch(resources[0], p.Resources) {
+				return p
+			}
+		case "exact":
+			if exactMatch(resources[0], p.Resources) {
+				return p
+			}
+		case "regex":
+			if regexMatch(resources[0], p.Resources) {
+				return p
+			}
+		default:
+			return nil
 	}
-	return nil
+  return nil
 }
 
-func (p *Policy) withActions(actions []string) *Policy {
-	if p == nil || len(actions) == 0 || contains(actions[0], p.Actions) {
-		return p
+func (p *Policy) withActions(actions []string, flavor string) *Policy {
+  if p == nil || len(actions) == 0 {
+    return p
+  }
+  
+	switch flavor {
+		case "glob":
+			if globMatch(actions[0], p.Actions) {
+				return p
+			}
+		case "exact":
+			if exactMatch(actions[0], p.Actions) {
+				return p
+			}
+		case "regex":
+			if regexMatch(actions[0], p.Actions) {
+				return p
+			}
+		default:
+			return nil
 	}
-	return nil
+  return nil
 }
 
-func (p *Policy) withIDs(ids []string) *Policy {
-	if p == nil || len(ids) == 0 || contains(p.ID, ids) {
-		return p
+func (p *Policy) withIDs(ids []string, flavor string) *Policy {
+  if p == nil || len(ids) == 0 {
+    return p
+  }
+  
+	switch flavor {
+		case "glob":
+			if globMatch(ids[0], []string{p.ID}) {
+				return p
+			}
+		case "exact":
+			if exactMatch(ids[0], []string{p.ID}) {
+				return p
+			}
+		case "regex":
+			if regexMatch(ids[0], []string{p.ID}) {
+				return p
+			}
+		default:
+			return nil
 	}
-	return nil
+  return nil
 }
