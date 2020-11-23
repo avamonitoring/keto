@@ -1,5 +1,7 @@
 package storage
 
+//import "fmt"
+
 // A list of roles.
 //
 // swagger:ignore
@@ -20,16 +22,50 @@ type Role struct {
 	Members []string `json:"members"`
 }
 
-func (r *Role) withMembers(members []string) *Role {
-	if r == nil || len(members) == 0 || contains(members[0], r.Members) {
-		return r
+func (r *Role) withMembers(members []string, flavor string) *Role {
+  if r == nil || len(members) == 0 {
+    return r
+  }
+  
+	switch flavor {
+		case "glob":
+			if globMatch(members[0], r.Members) { 
+				return r
+			} 
+		case "exact":
+			if exactMatch(members[0], r.Members) {
+				return r
+			}
+		case "regex":
+			if regexMatch(members[0], r.Members) {
+				return r
+			}
+		default:
+			return nil
 	}
-	return nil
+  return nil
 }
 
-func (r *Role) withIDs(ids []string) *Role {
-	if r == nil || len(ids) == 0 || contains(r.ID, ids) {
-		return r
+func (r *Role) withIDs(ids []string, flavor string) *Role {
+  if r == nil || len(ids) == 0 {
+    return r
+  }
+  
+	switch flavor {
+		case "glob":
+      if globMatch(ids[0], []string{r.ID}) {
+				return r
+			}
+		case "exact":
+			if exactMatch(ids[0], []string{r.ID}) {
+				return r
+			}
+		case "regex":
+			if regexMatch(ids[0], []string{r.ID}) {
+				return r
+			}
+		default:
+			return nil
 	}
-	return nil
+  return nil
 }

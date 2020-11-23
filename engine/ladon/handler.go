@@ -298,6 +298,7 @@ func (e *Engine) rolesList(ctx context.Context, r *http.Request, ps httprouter.P
 
 	return &kstorage.ListRequest{
 		Collection: roleCollection(f),
+		Flavor:     f,
 		Value:      &p,
 		FilterFunc: kstorage.ListByQuery,
 	}, nil
@@ -436,6 +437,7 @@ func (e *Engine) policiesList(ctx context.Context, r *http.Request, ps httproute
 
 	return &kstorage.ListRequest{
 		Collection: policyCollection(f),
+		Flavor:     f,
 		Value:      &p,
 		FilterFunc: kstorage.ListByQuery,
 	}, nil
